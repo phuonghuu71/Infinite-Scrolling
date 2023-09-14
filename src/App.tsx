@@ -1,16 +1,16 @@
 import { useRef, useState, useEffect } from "react";
 import useProducts from "./hooks/useProducts";
+import Product from "./components/Product";
 
 function App() {
   const [skip, setSkip] = useState<number>(0);
   const [query, setQuery] = useState<string>("");
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const { products, isLoading, hasNextPage, isError, error } = useProducts(
     skip,
     query
   );
-
-  const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const currentContainerRef = containerRef.current;
@@ -44,19 +44,9 @@ function App() {
       <div>
         {products.map((product, i) =>
           products.length === i + 1 ? (
-            <div ref={containerRef} key={product.id}>
-              <p>id: {product.id}</p>
-              <p>title: {product.title}</p>
-              <p>price: {product.price}</p>
-              <p>thumbnail: {product.thumbnail}</p>
-            </div>
+            <Product key={product.id} {...product} ref={containerRef} />
           ) : (
-            <div key={product.id}>
-              <p>id: {product.id}</p>
-              <p>title: {product.title}</p>
-              <p>price: {product.price}</p>
-              <p>thumbnail: {product.thumbnail}</p>
-            </div>
+            <Product key={product.id} {...product} />
           )
         )}
       </div>
