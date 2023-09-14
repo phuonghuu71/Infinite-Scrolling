@@ -1,10 +1,8 @@
 # Infinite Scrolling
 
-To run this project, you will need to run npm run dev
+To run and test this project, you will need to run npm install && npm run dev
 
 Localhost link: <http://localhost:5173>
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 **_Requirements_**
 
